@@ -82,7 +82,10 @@ var menuList = [
       nameMenu: "หมึก",
       priceMenu: 20.0),
   Menu(
-      imageMenu: "assets/imagesMenu/หมู.jpg", nameMenu: "หมู", priceMenu: 20.0),
+    imageMenu: "assets/imagesMenu/หมู.jpg",
+    nameMenu: "หมู",
+    priceMenu: 20.0,
+  ),
   Menu(
     imageMenu: "assets/imagesMenu/เห็ดเข็มทอง.jpg",
     nameMenu: "เห็ดเข็มทอง",
@@ -187,6 +190,7 @@ class _HomePageState extends State<HomePage> {
       actions: [
         IconButton(
           onPressed: () {
+            print(cartList);
             showDialog(
                 context: context,
                 builder: (BuildContext context) {
@@ -201,7 +205,7 @@ class _HomePageState extends State<HomePage> {
                         itemBuilder: (BuildContext context, int index) {
                           return ListTile(
                             title: Text(cartList[index].name),
-                            subtitle: Text(cartList[index].price.toString()),
+                            subtitle: Text(cartList[index].count.toString()),
                           );
                         },
                       ),
@@ -210,21 +214,25 @@ class _HomePageState extends State<HomePage> {
                       TextButton(
                         child: const Text('Cancel'),
                         onPressed: () {
-                          // todo:
                           Navigator.of(context).pop(); // ปิด dialog
                         },
                       ),
                       TextButton(
-                        child: const Text('OK'),
+                        child: const Text('Confirm'),
                         onPressed: () {
-                          // todo:
-                          Navigator.of(context).pop(); // ปิด dialog
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) {
+                                return CartPage();
+                              },
+                            ),
+                          );
                         },
                       ),
                     ],
                   );
-                }
-            );
+                });
           },
           icon: Icon(
             Icons.shopping_cart_outlined,
@@ -251,10 +259,10 @@ class _HomePageState extends State<HomePage> {
                       setState(() {
                         soupItem.isSoup = !soupItem.isSoup;
                       });
-                      if(soupItem.isSoup){
+                      if (soupItem.isSoup) {
                         _addSoup(index);
                       }
-                      if(!soupItem.isSoup){
+                      if (!soupItem.isSoup) {
                         _removeSoup(soupItem.nameSoup);
                       }
                     },
@@ -326,7 +334,64 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.all(8.0),
                   child: Text('${menuItem.priceMenu} ฿'),
                 ),
-                PickConter(),
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        setState(() {
+                          if (menuItem.countPick > 0) {
+                            menuItem.countPick--;
+                            print(menuItem.countPick);
+                            //_removeMenu(menuItem.nameMenu);
+                          }
+                        });
+                        // if (menuItem.countPick == 0) {
+                        //   _removeMenu(menuItem.nameMenu);
+                        // }
+                        // if (menuItem.countPick > 1) {
+                        //   _updateMenuCart(index,menuItem.nameMenu);
+                        // }
+                      },
+                      icon: Icon(Icons.remove_circle_outline),
+                    ),
+                    Text(
+                      menuItem.countPick.toString().padLeft(2, '0'),
+                      style: TextStyle(fontSize: 15.0),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        setState(() {
+                          menuItem.countPick++;
+                          print(menuItem.countPick);
+                          //_addMenuCart(index);
+                        });
+
+                        // if (menuItem.countPick == 1) {
+                        //   _addMenuCart(index);
+                        // }
+                        // if (menuItem.countPick > 1) {
+                        //   _updateMenuCart(index,menuItem.nameMenu);
+                        // }
+                      },
+                      icon: Icon(
+                        Icons.add_circle_outline,
+                      ),
+                    ),
+                  ],
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    if (menuItem.countPick >= 1) {
+                      _addMenuCart(index, menuItem.nameMenu);
+                    }
+                    if (menuItem.countPick == 0) {
+                      _removeMenu(menuItem.nameMenu);
+                    }
+                  },
+                  child: Text(
+                    'Add',
+                  ),
+                ),
               ],
             ),
           ),
@@ -338,18 +403,59 @@ class _HomePageState extends State<HomePage> {
   void _addSoup(int index) {
     var soupItem = soupList[index];
     setState(() {
-      cartList.add(Cart(name: soupItem.nameSoup, price: soupItem.priceSoup, count: 1));
+      cartList.add(
+        Cart(
+          name: soupItem.nameSoup,
+          price: soupItem.priceSoup,
+          count: 1,
+        ),
+      );
     });
   }
 
-  void _removeSoup(String name) {
+  void _removeSoup(String nameSoup) {
     setState(() {
-      cartList.removeWhere((item) => item.name == name);
+      cartList.removeWhere((item) => item.name == nameSoup);
+    });
+  }
+
+  /*void _addMenuCart(int index) {
+    var menuItem = menuList[index];
+    setState(() {
+      if (menuItem.countPick == 1) {
+        cartList.add(
+          Cart(
+            name: menuItem.nameMenu,
+            price: menuItem.priceMenu,
+            count: menuItem.countPick,
+          ),
+        );
+      }
+    });
+  }*/
+
+  void _removeMenu(String nameMenu) {
+    setState(() {
+      cartList.removeWhere((item) => item.name == nameMenu);
+    });
+  }
+
+  void _addMenuCart(int index, String nameMenu) {
+    var menuItem = menuList[index];
+    setState(() {
+      cartList.removeWhere((item) => item.name == nameMenu);
+      cartList.add(
+        Cart(
+          name: menuItem.nameMenu,
+          price: menuItem.priceMenu,
+          count: menuItem.countPick,
+        ),
+      );
     });
   }
 }
 
-class PickConter extends StatefulWidget {
+/*class PickConter extends StatefulWidget {
   const PickConter({Key? key}) : super(key: key);
 
   @override
@@ -358,6 +464,7 @@ class PickConter extends StatefulWidget {
 
 class _PickConterState extends State<PickConter> {
   var count = 0;
+  var menuItem = menuList[index]
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -373,7 +480,7 @@ class _PickConterState extends State<PickConter> {
           icon: Icon(Icons.remove_circle_outline),
         ),
         Text(
-          count.toString().padLeft(2, '0'),
+          menuItem.countPick.toString().padLeft(2, '0'),
           style: TextStyle(fontSize: 15.0),
         ),
         IconButton(
@@ -381,7 +488,9 @@ class _PickConterState extends State<PickConter> {
             setState(() {
               count++;
             });
-            if (count > 1) {}
+            if (count > 1) {
+              _addMenuCart();
+            }
           },
           icon: Icon(
             Icons.add_circle_outline,
@@ -390,4 +499,5 @@ class _PickConterState extends State<PickConter> {
       ],
     );
   }
-}
+
+}*/
