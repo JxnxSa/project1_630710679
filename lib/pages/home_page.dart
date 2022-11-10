@@ -1,65 +1,105 @@
 import 'package:flutter/material.dart';
+import 'package:project1_630710679/models/cart.dart';
 import 'package:project1_630710679/models/menu.dart';
 import 'package:project1_630710679/models/soup.dart';
 import 'package:project1_630710679/pages/cart_page.dart';
+import 'package:project1_630710679/providers/cart_provider.dart';
 //import 'package:project1_630710679/providers/soup_provider.dart';
 import 'package:provider/provider.dart';
 
 String menuPath = "assets/imagesMenu/";
 var menuList = [
-  Menu(imageMenu: menuPath + "กุ้ง.jpg", nameMenu: "กุ้ง", priceMenu: 20.0),
-  Menu(imageMenu: menuPath + "ไก่.jpg", nameMenu: "ไก่", priceMenu: 20.0),
   Menu(
-      imageMenu: menuPath + "ข้าวโพด.jpg",
-      nameMenu: "ข้าวโพด",
+    imageMenu: "assets/imagesMenu/กุ้ง.jpg",
+    nameMenu: "กุ้ง",
+    priceMenu: 20.0,
+  ),
+  Menu(
+    imageMenu: "assets/imagesMenu/ไก่.jpg",
+    nameMenu: "ไก่",
+    priceMenu: 20.0,
+  ),
+  Menu(
+    imageMenu: "assets/imagesMenu/ข้าวโพด.jpg",
+    nameMenu: "ข้าวโพด",
+    priceMenu: 20.0,
+  ),
+  Menu(
+    imageMenu: "assets/imagesMenu/ไข่.jpg",
+    nameMenu: "ไข่",
+    priceMenu: 20.0,
+  ),
+  Menu(
+    imageMenu: "assets/imagesMenu/ตับ.jpg",
+    nameMenu: "ตับ",
+    priceMenu: 20.0,
+  ),
+  Menu(
+    imageMenu: "assets/imagesMenu/เต้าหู้ปลา.jpg",
+    nameMenu: "เต้าหู้ปลา",
+    priceMenu: 20.0,
+  ),
+  Menu(
+    imageMenu: "assets/imagesMenu/เนื้อ.jpg",
+    nameMenu: "เนื้อ",
+    priceMenu: 20.0,
+  ),
+  Menu(
+    imageMenu: "assets/imagesMenu/บะหมีหยก.jpg",
+    nameMenu: "บะหมี่หยก",
+    priceMenu: 20.0,
+  ),
+  Menu(
+      imageMenu: "assets/imagesMenu/ปลา.jpg",
+      nameMenu: "ปลา",
       priceMenu: 20.0),
-  Menu(imageMenu: menuPath + "ไข่.jpg", nameMenu: "ไข่", priceMenu: 20.0),
-  Menu(imageMenu: menuPath + "ตับ.jpg", nameMenu: "ตับ", priceMenu: 20.0),
   Menu(
-      imageMenu: menuPath + "เต้าหู้ปลา.jpg",
-      nameMenu: "เต้าหู้ปลา",
-      priceMenu: 20.0),
-  Menu(imageMenu: menuPath + "เนื้อ.jpg", nameMenu: "เนื้อ", priceMenu: 20.0),
+    imageMenu: "assets/imagesMenu/ผักกาดขาว.jpg",
+    nameMenu: "ผักกาดขาว",
+    priceMenu: 20.0,
+  ),
   Menu(
-      imageMenu: menuPath + "บะหมีหยก.jpg",
-      nameMenu: "บะหมี่หยก",
-      priceMenu: 20.0),
-  Menu(imageMenu: menuPath + "ปลา.jpg", nameMenu: "ปลา", priceMenu: 20.0),
+    imageMenu: "assets/imagesMenu/ผักบุ้ง.jpg",
+    nameMenu: "ผักบุ้ง",
+    priceMenu: 20.0,
+  ),
   Menu(
-      imageMenu: menuPath + "ผักกาดขาว.jpg",
-      nameMenu: "ผักกาดขาว",
-      priceMenu: 20.0),
-  Menu(
-      imageMenu: menuPath + "ผักบุ้ง.jpg",
-      nameMenu: "ผักบุ้ง",
-      priceMenu: 20.0),
-  Menu(
-      imageMenu: menuPath + "ผักฮ่องเต้.jpg",
+      imageMenu: "assets/imagesMenu/ผักฮ่องเต้.jpg",
       nameMenu: "ผักฮ่องเต้",
       priceMenu: 20.0),
   Menu(
-      imageMenu: menuPath + "ลูกชิ้น.jpg",
+      imageMenu: "assets/imagesMenu/ลูกชิ้น.jpg",
       nameMenu: "ลูกชิ้น",
       priceMenu: 20.0),
   Menu(
-      imageMenu: menuPath + "วุ้นเส้น.jpg",
+      imageMenu: "assets/imagesMenu/วุ้นเส้น.jpg",
       nameMenu: "วุ้นเส้น",
       priceMenu: 20.0),
   Menu(
-      imageMenu: menuPath + "สามชั้น.jpg",
+      imageMenu: "assets/imagesMenu/สามชั้น.jpg",
       nameMenu: "สามชั้น",
       priceMenu: 20.0),
-  Menu(imageMenu: menuPath + "หมึก.jpg", nameMenu: "หมึก", priceMenu: 20.0),
-  Menu(imageMenu: menuPath + "หมู.jpg", nameMenu: "หมู", priceMenu: 20.0),
   Menu(
-      imageMenu: menuPath + "เห็ดเข็มทอง.jpg",
-      nameMenu: "เห็ดเข็มทอง",
+      imageMenu: "assets/imagesMenu/หมึก.jpg",
+      nameMenu: "หมึก",
       priceMenu: 20.0),
   Menu(
-      imageMenu: menuPath + "เห็ดฟาง.jpg",
-      nameMenu: "เห็ดฟาง",
+      imageMenu: "assets/imagesMenu/หมู.jpg",
+      nameMenu: "หมู",
       priceMenu: 20.0),
+  Menu(
+    imageMenu: "assets/imagesMenu/เห็ดเข็มทอง.jpg",
+    nameMenu: "เห็ดเข็มทอง",
+    priceMenu: 20.0,
+  ),
+  Menu(
+    imageMenu: "assets/imagesMenu/เห็ดฟาง.jpg",
+    nameMenu: "เห็ดฟาง",
+    priceMenu: 20.0,
+  ),
 ];
+
+List<Cart> _cart = [];
 
 var soupList = [
   Soup(
@@ -97,7 +137,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  //List<Soup>? _soupList;
 
   @override
   Widget build(BuildContext context) {
@@ -187,6 +226,9 @@ class _HomePageState extends State<HomePage> {
                       setState(() {
                         soupItem.isSoup = !soupItem.isSoup;
                       });
+                      if (soupItem.isSoup) {
+                        _addSoup();
+                      }
                     },
                     icon: soupItem.isSoup
                         ? Icon(Icons.circle_rounded)
@@ -264,6 +306,12 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  void _addSoup() {
+    setState(() {
+
+    });
+  }
 }
 
 class PickConter extends StatefulWidget {
@@ -298,8 +346,11 @@ class _PickConterState extends State<PickConter> {
             setState(() {
               count++;
             });
+            if (count > 1) {}
           },
-          icon: Icon(Icons.add_circle_outline,),
+          icon: Icon(
+            Icons.add_circle_outline,
+          ),
         ),
       ],
     );
