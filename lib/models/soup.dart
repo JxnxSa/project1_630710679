@@ -12,7 +12,10 @@ class Soup extends ChangeNotifier{
     this.isSoup = false,
   });
 
-
+  void addSoupCart(){
+    nameSoup;
+    priceSoup;
+  }
 
   /*var soupList = [
     Soup(

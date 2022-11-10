@@ -50,9 +50,7 @@ var menuList = [
     priceMenu: 20.0,
   ),
   Menu(
-      imageMenu: "assets/imagesMenu/ปลา.jpg",
-      nameMenu: "ปลา",
-      priceMenu: 20.0),
+      imageMenu: "assets/imagesMenu/ปลา.jpg", nameMenu: "ปลา", priceMenu: 20.0),
   Menu(
     imageMenu: "assets/imagesMenu/ผักกาดขาว.jpg",
     nameMenu: "ผักกาดขาว",
@@ -84,9 +82,7 @@ var menuList = [
       nameMenu: "หมึก",
       priceMenu: 20.0),
   Menu(
-      imageMenu: "assets/imagesMenu/หมู.jpg",
-      nameMenu: "หมู",
-      priceMenu: 20.0),
+      imageMenu: "assets/imagesMenu/หมู.jpg", nameMenu: "หมู", priceMenu: 20.0),
   Menu(
     imageMenu: "assets/imagesMenu/เห็ดเข็มทอง.jpg",
     nameMenu: "เห็ดเข็มทอง",
@@ -99,7 +95,7 @@ var menuList = [
   ),
 ];
 
-List<Cart> _cart = [];
+List<Cart> cartList = [];
 
 var soupList = [
   Soup(
@@ -137,7 +133,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -192,13 +187,43 @@ class _HomePageState extends State<HomePage> {
       actions: [
         IconButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
+            showDialog(
+                context: context,
                 builder: (BuildContext context) {
-                  return CartPage();
-                },
-              ),
+                  return AlertDialog(
+                    title: Text('Food Order'),
+                    content: Container(
+                      height: 700.0,
+                      width: 400.0,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: cartList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return ListTile(
+                            title: Text(cartList[index].name),
+                            subtitle: Text(cartList[index].price.toString()),
+                          );
+                        },
+                      ),
+                    ),
+                    actions: <Widget>[
+                      TextButton(
+                        child: const Text('Cancel'),
+                        onPressed: () {
+                          // todo:
+                          Navigator.of(context).pop(); // ปิด dialog
+                        },
+                      ),
+                      TextButton(
+                        child: const Text('OK'),
+                        onPressed: () {
+                          // todo:
+                          Navigator.of(context).pop(); // ปิด dialog
+                        },
+                      ),
+                    ],
+                  );
+                }
             );
           },
           icon: Icon(
@@ -226,8 +251,11 @@ class _HomePageState extends State<HomePage> {
                       setState(() {
                         soupItem.isSoup = !soupItem.isSoup;
                       });
-                      if (soupItem.isSoup) {
-                        _addSoup();
+                      if(soupItem.isSoup){
+                        _addSoup(index);
+                      }
+                      if(!soupItem.isSoup){
+                        _removeSoup(soupItem.nameSoup);
                       }
                     },
                     icon: soupItem.isSoup
@@ -307,9 +335,16 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _addSoup() {
+  void _addSoup(int index) {
+    var soupItem = soupList[index];
     setState(() {
+      cartList.add(Cart(name: soupItem.nameSoup, price: soupItem.priceSoup, count: 1));
+    });
+  }
 
+  void _removeSoup(String name) {
+    setState(() {
+      cartList.removeWhere((item) => item.name == name);
     });
   }
 }
