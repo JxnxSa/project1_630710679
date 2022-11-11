@@ -23,61 +23,37 @@ class _CartPageState extends State<CartPage> {
             itemCount: provider.carts.length,
             itemBuilder: (context, int index) {
               Cart data = provider.carts[index];
-              return Card(
-                elevation: 5.0,
-                margin: const EdgeInsets.symmetric(
-                  vertical: 8.0,
-                  horizontal: 5.0,
+              return ListTile(
+                //title: Text(data.name),
+                leading: Container(
+                  width: 50.0,
+                  height: 50.0,
+                  child: Row(
+                    children: [
+                      Text(
+                        '${data.count}x',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Text(data.name),
+                      Text('Price ${data.price * data.count} ฿'),
+                    ],
+                  ),
                 ),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    radius: 30.0,
-                    child: FittedBox(
-                      child: Text(data.count.toString()),
+                /*leading: CircleAvatar(
+                      radius: 30.0,
+                      child: FittedBox(
+                        child: Text(data.count.toString()),
+                      ),
                     ),
-                  ),
-                  title: Text(data.name),
-                  subtitle: Text(
-                    'Price ${(data.price * data.count).toString()} ฿',
-                  ),
-                ),
+                    title: Text(data.name),
+                    subtitle: Text(
+                      'Price ${(data.price * data.count).toString()} ฿',
+                    ),*/
               );
             },
           );
         },
       ),
-      /*Consumer(
-        builder: (context, SoupProvider provider, child) {
-          return ListView.builder(
-            itemCount: provider.soups.length,
-            itemBuilder: (context, int index) {
-              Soup data = provider.soups[index];
-              return Card(
-                elevation: 5.0,
-                margin: const EdgeInsets.symmetric(
-                  vertical: 8.0,
-                  horizontal: 5.0,
-                ),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    radius: 30.0,
-                    child: FittedBox(
-                      child: Image.asset(
-                        data.imageSoup,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  title: Text(data.nameSoup),
-                  subtitle: Text(
-                    'Price ${data.priceSoup.toString()} ฿',
-                  ),
-                ),
-              );
-            },
-          );
-        },
-      ),*/
     );
   }
 }
