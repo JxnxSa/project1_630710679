@@ -35,7 +35,4 @@ class SoupProvider extends ChangeNotifier {
     return soups;
   }
 
-  void addSoup(Soup statement) {
-    soups.add(statement);
-  }
 }

@@ -12,89 +12,92 @@ var menuList = [
   Menu(
     imageMenu: "assets/imagesMenu/กุ้ง.jpg",
     nameMenu: "กุ้ง",
-    priceMenu: 20.0,
+    priceMenu: 10.0,
   ),
   Menu(
     imageMenu: "assets/imagesMenu/ไก่.jpg",
     nameMenu: "ไก่",
-    priceMenu: 20.0,
+    priceMenu: 7.0,
   ),
   Menu(
     imageMenu: "assets/imagesMenu/ข้าวโพด.jpg",
     nameMenu: "ข้าวโพด",
-    priceMenu: 20.0,
+    priceMenu: 8.0,
   ),
   Menu(
     imageMenu: "assets/imagesMenu/ไข่.jpg",
     nameMenu: "ไข่",
-    priceMenu: 20.0,
+    priceMenu: 7.0,
   ),
   Menu(
     imageMenu: "assets/imagesMenu/ตับ.jpg",
     nameMenu: "ตับ",
-    priceMenu: 20.0,
+    priceMenu: 6.0,
   ),
   Menu(
     imageMenu: "assets/imagesMenu/เต้าหู้ปลา.jpg",
     nameMenu: "เต้าหู้ปลา",
-    priceMenu: 20.0,
+    priceMenu: 6.0,
   ),
   Menu(
     imageMenu: "assets/imagesMenu/เนื้อ.jpg",
     nameMenu: "เนื้อ",
-    priceMenu: 20.0,
+    priceMenu: 10.0,
   ),
   Menu(
     imageMenu: "assets/imagesMenu/บะหมีหยก.jpg",
     nameMenu: "บะหมี่หยก",
-    priceMenu: 20.0,
+    priceMenu: 6.0,
   ),
   Menu(
-      imageMenu: "assets/imagesMenu/ปลา.jpg", nameMenu: "ปลา", priceMenu: 20.0),
+    imageMenu: "assets/imagesMenu/ปลา.jpg",
+    nameMenu: "ปลา",
+    priceMenu: 6.0,
+  ),
   Menu(
     imageMenu: "assets/imagesMenu/ผักกาดขาว.jpg",
     nameMenu: "ผักกาดขาว",
-    priceMenu: 20.0,
+    priceMenu: 5.0,
   ),
   Menu(
     imageMenu: "assets/imagesMenu/ผักบุ้ง.jpg",
     nameMenu: "ผักบุ้ง",
-    priceMenu: 20.0,
+    priceMenu: 5.0,
   ),
   Menu(
       imageMenu: "assets/imagesMenu/ผักฮ่องเต้.jpg",
       nameMenu: "ผักฮ่องเต้",
-      priceMenu: 20.0),
+      priceMenu: 5.0),
   Menu(
       imageMenu: "assets/imagesMenu/ลูกชิ้น.jpg",
       nameMenu: "ลูกชิ้น",
-      priceMenu: 20.0),
+      priceMenu: 5.0),
   Menu(
       imageMenu: "assets/imagesMenu/วุ้นเส้น.jpg",
       nameMenu: "วุ้นเส้น",
-      priceMenu: 20.0),
+      priceMenu: 5.0),
   Menu(
       imageMenu: "assets/imagesMenu/สามชั้น.jpg",
       nameMenu: "สามชั้น",
-      priceMenu: 20.0),
+      priceMenu: 7.0),
   Menu(
       imageMenu: "assets/imagesMenu/หมึก.jpg",
       nameMenu: "หมึก",
-      priceMenu: 20.0),
+      priceMenu: 10.0),
   Menu(
     imageMenu: "assets/imagesMenu/หมู.jpg",
     nameMenu: "หมู",
-    priceMenu: 20.0,
+    priceMenu: 7.0,
   ),
   Menu(
     imageMenu: "assets/imagesMenu/เห็ดเข็มทอง.jpg",
     nameMenu: "เห็ดเข็มทอง",
-    priceMenu: 20.0,
+    priceMenu: 5.0,
   ),
   Menu(
     imageMenu: "assets/imagesMenu/เห็ดฟาง.jpg",
     nameMenu: "เห็ดฟาง",
-    priceMenu: 20.0,
+    priceMenu: 5.0,
   ),
 ];
 
@@ -104,27 +107,27 @@ var soupList = [
   Soup(
     imageSoup: "assets/imagesSoup/กระดูกหมู.jpg",
     nameSoup: "กระดูกหมู",
-    priceSoup: 100.0,
+    priceSoup: 30.0,
   ),
   Soup(
     imageSoup: "assets/imagesSoup/แจ่วฮ้อน.jpg",
     nameSoup: "แจ่วฮ้อน",
-    priceSoup: 100.0,
+    priceSoup: 30.0,
   ),
   Soup(
     imageSoup: "assets/imagesSoup/ต้มยำ.jpg",
     nameSoup: "ต้มยำ",
-    priceSoup: 100.0,
+    priceSoup: 30.0,
   ),
   Soup(
     imageSoup: "assets/imagesSoup/น้ำดำ.jpg",
     nameSoup: "น้ำดำ",
-    priceSoup: 100.0,
+    priceSoup: 30.0,
   ),
   Soup(
     imageSoup: "assets/imagesSoup/น้ำใส.jpg",
     nameSoup: "น้ำใส",
-    priceSoup: 100.0,
+    priceSoup: 30.0,
   ),
 ];
 
@@ -190,7 +193,6 @@ class _HomePageState extends State<HomePage> {
       actions: [
         IconButton(
           onPressed: () {
-            print(cartList);
             showDialog(
                 context: context,
                 builder: (BuildContext context) {
@@ -259,8 +261,12 @@ class _HomePageState extends State<HomePage> {
                       setState(() {
                         soupItem.isSoup = !soupItem.isSoup;
                       });
-                      Cart statement = Cart(name: soupItem.nameSoup, price: soupItem.priceSoup, count: 1);
-                      var provider = Provider.of<CartProvider>(context, listen: false);
+                      Cart statement = Cart(
+                          name: soupItem.nameSoup,
+                          price: soupItem.priceSoup,
+                          count: 1);
+                      var provider =
+                          Provider.of<CartProvider>(context, listen: false);
                       if (soupItem.isSoup) {
                         _addSoup(index);
                         provider.addSoupCart(statement);
@@ -346,15 +352,8 @@ class _HomePageState extends State<HomePage> {
                           if (menuItem.countPick > 0) {
                             menuItem.countPick--;
                             print(menuItem.countPick);
-                            //_removeMenu(menuItem.nameMenu);
                           }
                         });
-                        // if (menuItem.countPick == 0) {
-                        //   _removeMenu(menuItem.nameMenu);
-                        // }
-                        // if (menuItem.countPick > 1) {
-                        //   _updateMenuCart(index,menuItem.nameMenu);
-                        // }
                       },
                       icon: Icon(Icons.remove_circle_outline),
                     ),
@@ -366,16 +365,8 @@ class _HomePageState extends State<HomePage> {
                       onPressed: () {
                         setState(() {
                           menuItem.countPick++;
-                          print(menuItem.countPick);
-                          //_addMenuCart(index);
+                          //print(menuItem.countPick);
                         });
-
-                        // if (menuItem.countPick == 1) {
-                        //   _addMenuCart(index);
-                        // }
-                        // if (menuItem.countPick > 1) {
-                        //   _updateMenuCart(index,menuItem.nameMenu);
-                        // }
                       },
                       icon: Icon(
                         Icons.add_circle_outline,
@@ -385,8 +376,12 @@ class _HomePageState extends State<HomePage> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Cart statement = Cart(name: menuItem.nameMenu, price: menuItem.priceMenu, count: menuItem.countPick);
-                    var provider = Provider.of<CartProvider>(context, listen: false);
+                    Cart statement = Cart(
+                        name: menuItem.nameMenu,
+                        price: menuItem.priceMenu,
+                        count: menuItem.countPick);
+                    var provider =
+                        Provider.of<CartProvider>(context, listen: false);
                     if (menuItem.countPick >= 1) {
                       _addMenuCart(index, menuItem.nameMenu);
                       provider.addMenuCart(statement, menuItem.nameMenu);
