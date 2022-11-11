@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Menu{
   final String imageMenu, nameMenu;
   final double priceMenu;
@@ -11,6 +9,4 @@ class Menu{
     required this.priceMenu,
     this.countPick = 0,
   });
-
-
 }

@@ -4,7 +4,6 @@ import 'package:project1_630710679/models/menu.dart';
 import 'package:project1_630710679/models/soup.dart';
 import 'package:project1_630710679/pages/cart_page.dart';
 import 'package:project1_630710679/providers/cart_provider.dart';
-//import 'package:project1_630710679/providers/soup_provider.dart';
 import 'package:provider/provider.dart';
 
 String menuPath = "assets/imagesMenu/";
