@@ -11,92 +11,88 @@ String menuPath = "assets/imagesMenu/";
 var menuList = [
   Menu(
     imageMenu: "assets/imagesMenu/กุ้ง.jpg",
-    nameMenu: "กุ้ง",
+    nameMenu: "Shrimp",
     priceMenu: 10.0,
   ),
   Menu(
     imageMenu: "assets/imagesMenu/ไก่.jpg",
-    nameMenu: "ไก่",
+    nameMenu: "Chicken",
     priceMenu: 7.0,
   ),
   Menu(
     imageMenu: "assets/imagesMenu/ข้าวโพด.jpg",
-    nameMenu: "ข้าวโพด",
+    nameMenu: "Sweetcorn",
     priceMenu: 8.0,
   ),
   Menu(
     imageMenu: "assets/imagesMenu/ไข่.jpg",
-    nameMenu: "ไข่",
+    nameMenu: "Egg",
     priceMenu: 7.0,
   ),
   Menu(
     imageMenu: "assets/imagesMenu/ตับ.jpg",
-    nameMenu: "ตับ",
+    nameMenu: "Liver",
     priceMenu: 6.0,
   ),
   Menu(
     imageMenu: "assets/imagesMenu/เต้าหู้ปลา.jpg",
-    nameMenu: "เต้าหู้ปลา",
+    nameMenu: "Fish Tofu",
     priceMenu: 6.0,
   ),
   Menu(
     imageMenu: "assets/imagesMenu/เนื้อ.jpg",
-    nameMenu: "เนื้อ",
+    nameMenu: "Meat",
     priceMenu: 10.0,
   ),
   Menu(
     imageMenu: "assets/imagesMenu/บะหมีหยก.jpg",
-    nameMenu: "บะหมี่หยก",
+    nameMenu: "Jade Noodles",
     priceMenu: 6.0,
   ),
   Menu(
     imageMenu: "assets/imagesMenu/ปลา.jpg",
-    nameMenu: "ปลา",
+    nameMenu: "Fish",
     priceMenu: 6.0,
   ),
   Menu(
     imageMenu: "assets/imagesMenu/ผักกาดขาว.jpg",
-    nameMenu: "ผักกาดขาว",
+    nameMenu: "White Cabbage",
     priceMenu: 5.0,
   ),
   Menu(
     imageMenu: "assets/imagesMenu/ผักบุ้ง.jpg",
-    nameMenu: "ผักบุ้ง",
+    nameMenu: "Water Convolvulus",
     priceMenu: 5.0,
   ),
   Menu(
-      imageMenu: "assets/imagesMenu/ผักฮ่องเต้.jpg",
-      nameMenu: "ผักฮ่องเต้",
-      priceMenu: 5.0),
-  Menu(
       imageMenu: "assets/imagesMenu/ลูกชิ้น.jpg",
-      nameMenu: "ลูกชิ้น",
+      nameMenu: "Fish Balls",
       priceMenu: 5.0),
   Menu(
       imageMenu: "assets/imagesMenu/วุ้นเส้น.jpg",
-      nameMenu: "วุ้นเส้น",
+      nameMenu: "Vermicelli",
       priceMenu: 5.0),
   Menu(
       imageMenu: "assets/imagesMenu/สามชั้น.jpg",
-      nameMenu: "สามชั้น",
+      nameMenu: "Streaky Pork",
       priceMenu: 7.0),
   Menu(
       imageMenu: "assets/imagesMenu/หมึก.jpg",
-      nameMenu: "หมึก",
+      nameMenu: "Squid",
       priceMenu: 10.0),
   Menu(
     imageMenu: "assets/imagesMenu/หมู.jpg",
-    nameMenu: "หมู",
+    nameMenu: "Pork",
     priceMenu: 7.0,
   ),
   Menu(
     imageMenu: "assets/imagesMenu/เห็ดเข็มทอง.jpg",
-    nameMenu: "เห็ดเข็มทอง",
+    nameMenu: "Golden Needle Mushroom",
     priceMenu: 5.0,
   ),
   Menu(
     imageMenu: "assets/imagesMenu/เห็ดฟาง.jpg",
-    nameMenu: "เห็ดฟาง",
+    nameMenu: "Straw Mushroom",
     priceMenu: 5.0,
   ),
 ];
@@ -106,27 +102,27 @@ List<Cart> cartList = [];
 var soupList = [
   Soup(
     imageSoup: "assets/imagesSoup/กระดูกหมู.jpg",
-    nameSoup: "กระดูกหมู",
+    nameSoup: "Pork Bone Broth",
     priceSoup: 30.0,
   ),
   Soup(
     imageSoup: "assets/imagesSoup/แจ่วฮ้อน.jpg",
-    nameSoup: "แจ่วฮ้อน",
+    nameSoup: "Jaew Hon",
     priceSoup: 30.0,
   ),
   Soup(
     imageSoup: "assets/imagesSoup/ต้มยำ.jpg",
-    nameSoup: "ต้มยำ",
+    nameSoup: "Tom Yum Soup",
     priceSoup: 30.0,
   ),
   Soup(
     imageSoup: "assets/imagesSoup/น้ำดำ.jpg",
-    nameSoup: "น้ำดำ",
+    nameSoup: "Shabu Black Soup",
     priceSoup: 30.0,
   ),
   Soup(
     imageSoup: "assets/imagesSoup/น้ำใส.jpg",
-    nameSoup: "น้ำใส",
+    nameSoup: "Clear soup",
     priceSoup: 30.0,
   ),
 ];

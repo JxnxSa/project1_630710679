@@ -19,38 +19,34 @@ class _CartPageState extends State<CartPage> {
       ),
       body: Consumer(
         builder: (context, CartProvider provider, child) {
-          return ListView.builder(
-            itemCount: provider.carts.length,
-            itemBuilder: (context, int index) {
-              Cart data = provider.carts[index];
-              return ListTile(
-                //title: Text(data.name),
-                leading: Container(
-                  width: 50.0,
-                  height: 50.0,
-                  child: Row(
-                    children: [
-                      Text(
-                        '${data.count}x',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+          return  ListView.builder(
+              itemCount: provider.carts.length,
+              itemBuilder: (context, int index) {
+                Cart data = provider.carts[index];
+                return Card(
+                  elevation: 10.0,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+                      //title: Text(data.name),
+                      leading: Container(
+                        width: 50.0,
+                        height: 50.0,
+                        child: Row(
+                          children: [
+                            Text(
+                              '${data.count}x',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
                       ),
-                      Text(data.name),
-                      Text('Price ${data.price * data.count} ฿'),
-                    ],
-                  ),
-                ),
-                /*leading: CircleAvatar(
-                      radius: 30.0,
-                      child: FittedBox(
-                        child: Text(data.count.toString()),
-                      ),
+                      title: Text(data.name),
+                      trailing: Text('${data.price * data.count}   ฿'),
                     ),
-                    title: Text(data.name),
-                    subtitle: Text(
-                      'Price ${(data.price * data.count).toString()} ฿',
-                    ),*/
-              );
-            },
+                  ),
+                );
+              },
           );
         },
       ),
