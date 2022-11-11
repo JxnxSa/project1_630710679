@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Menu extends ChangeNotifier{
+class Menu{
   final String imageMenu, nameMenu;
   final double priceMenu;
   int countPick;

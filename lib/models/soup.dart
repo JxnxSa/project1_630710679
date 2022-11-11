@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Soup extends ChangeNotifier{
+class Soup {
   String imageSoup, nameSoup;
   double priceSoup;
   bool isSoup;
@@ -12,10 +12,10 @@ class Soup extends ChangeNotifier{
     this.isSoup = false,
   });
 
-  void addSoupCart(){
-    nameSoup;
-    priceSoup;
-  }
+  // void addSoupCart(){
+  //   nameSoup;
+  //   priceSoup;
+  // }
 
   /*var soupList = [
     Soup(

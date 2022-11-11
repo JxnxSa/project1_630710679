@@ -259,11 +259,15 @@ class _HomePageState extends State<HomePage> {
                       setState(() {
                         soupItem.isSoup = !soupItem.isSoup;
                       });
+                      Cart statement = Cart(name: soupItem.nameSoup, price: soupItem.priceSoup, count: 1);
+                      var provider = Provider.of<CartProvider>(context, listen: false);
                       if (soupItem.isSoup) {
                         _addSoup(index);
+                        provider.addSoupCart(statement);
                       }
                       if (!soupItem.isSoup) {
                         _removeSoup(soupItem.nameSoup);
+                        provider.removeSoup(soupItem.nameSoup);
                       }
                     },
                     icon: soupItem.isSoup
@@ -381,11 +385,15 @@ class _HomePageState extends State<HomePage> {
                 ),
                 ElevatedButton(
                   onPressed: () {
+                    Cart statement = Cart(name: menuItem.nameMenu, price: menuItem.priceMenu, count: menuItem.countPick);
+                    var provider = Provider.of<CartProvider>(context, listen: false);
                     if (menuItem.countPick >= 1) {
                       _addMenuCart(index, menuItem.nameMenu);
+                      provider.addMenuCart(statement, menuItem.nameMenu);
                     }
                     if (menuItem.countPick == 0) {
                       _removeMenu(menuItem.nameMenu);
+                      provider.removeMenu(menuItem.nameMenu);
                     }
                   },
                   child: Text(
