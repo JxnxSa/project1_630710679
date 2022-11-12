@@ -10,7 +10,6 @@ class CartProvider extends ChangeNotifier {
 
   void addSoupCart(Cart statement) {
     carts.add(statement);
-    // carts.add(statement);
   }
 
   void removeSoup(String nameSoup) {

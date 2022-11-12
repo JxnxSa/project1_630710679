@@ -28,7 +28,6 @@ class _CartPageState extends State<CartPage> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ListTile(
-                      //title: Text(data.name),
                       leading: Container(
                         width: 50.0,
                         height: 50.0,
@@ -42,6 +41,7 @@ class _CartPageState extends State<CartPage> {
                         ),
                       ),
                       title: Text(data.name),
+                      subtitle: Text('${data.price.toString()}  ฿'),
                       trailing: Text('${data.price * data.count}   ฿'),
                     ),
                   ),

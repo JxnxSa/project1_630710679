@@ -257,9 +257,10 @@ class _HomePageState extends State<HomePage> {
                         soupItem.isSoup = !soupItem.isSoup;
                       });
                       Cart statement = Cart(
-                          name: soupItem.nameSoup,
-                          price: soupItem.priceSoup,
-                          count: 1);
+                        name: soupItem.nameSoup,
+                        price: soupItem.priceSoup,
+                        count: 1,
+                      );
                       var provider =
                           Provider.of<CartProvider>(context, listen: false);
                       if (soupItem.isSoup) {
@@ -417,21 +418,6 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  /*void _addMenuCart(int index) {
-    var menuItem = menuList[index];
-    setState(() {
-      if (menuItem.countPick == 1) {
-        cartList.add(
-          Cart(
-            name: menuItem.nameMenu,
-            price: menuItem.priceMenu,
-            count: menuItem.countPick,
-          ),
-        );
-      }
-    });
-  }*/
-
   void _removeMenu(String nameMenu) {
     setState(() {
       cartList.removeWhere((item) => item.name == nameMenu);
@@ -453,49 +439,3 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-/*class PickConter extends StatefulWidget {
-  const PickConter({Key? key}) : super(key: key);
-
-  @override
-  State<PickConter> createState() => _PickConterState();
-}
-
-class _PickConterState extends State<PickConter> {
-  var count = 0;
-  var menuItem = menuList[index]
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        IconButton(
-          onPressed: () {
-            setState(() {
-              if (count > 0) {
-                count--;
-              }
-            });
-          },
-          icon: Icon(Icons.remove_circle_outline),
-        ),
-        Text(
-          menuItem.countPick.toString().padLeft(2, '0'),
-          style: TextStyle(fontSize: 15.0),
-        ),
-        IconButton(
-          onPressed: () {
-            setState(() {
-              count++;
-            });
-            if (count > 1) {
-              _addMenuCart();
-            }
-          },
-          icon: Icon(
-            Icons.add_circle_outline,
-          ),
-        ),
-      ],
-    );
-  }
-
-}*/
